@@ -20,7 +20,7 @@ class serialCommTester:
 
   def recv(self):
     timeout = 1000
-    # wait until their are bytes available, use timeout to break and avoid infinite loop
+    # wait until their are bytes available, use timeout to break and avoid infinite loop and
     while self.serialComm.in_waiting <= 0:
       timeout = timeout - 1
       if timeout == 0:

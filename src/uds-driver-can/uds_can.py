@@ -58,6 +58,13 @@ class UDSRequester:
     self.PositiveCodeClearResponse = CANMessage(selfid,[0x54])
     self.NegativeCodeClearResponse = CANMessage(selfid,[0x7F,0x14])
 
+    self.receivedResponse = ''
+
+  def receiveResponse(self):
+    resp = self.tester.recv()
+    self.receivedResponse = resp
+    return resp
+
   def sendDefaultSession(self):
     """
     Displays the information of the example.
@@ -94,13 +101,17 @@ class UDSRequester:
     """
     self.tester.send(self.SafetySystemDiagnosticSession.convertToByteArray())
     return
-  def checkPositiveSessionResponse(self):
+  def checkPositiveSessionResponse(self,sessionType):
     """
     Displays the information of the example.
 
     Returns:
         str: A string containing the name and value.
     """
+    resp = self.receiveResponse()
+    splitResp = resp.strip().lower().split(' ')
+    if (splitResp[1] == '50') and (sessionType == splitResp[2]):
+      return True
     return False
   def checkNegativeSessionResponse(self):
     """
@@ -109,6 +120,10 @@ class UDSRequester:
     Returns:
         str: A string containing the name and value.
     """
+    resp = self.receiveResponse()
+    splitResp = resp.strip().lower().split(' ')
+    if (splitResp[1] == '7f') and (splitResp[1] == '10'):
+      return True
     return False
   
   def sendCodeClear(self):
@@ -127,6 +142,10 @@ class UDSRequester:
     Returns:
         str: A string containing the name and value.
     """
+    resp = self.receiveResponse()
+    splitResp = resp.strip().lower().split(' ')
+    if splitResp[1] == '54':
+      return True
     return False
   def checkNegativeCodeClearResponse(self):
     """
@@ -135,6 +154,10 @@ class UDSRequester:
     Returns:
         str: A string containing the name and value.
     """
+    resp = self.receiveResponse()
+    splitResp = resp.strip().lower().split(' ')
+    if splitResp[1] == '7f' and (splitResp[1] == '14'):
+      return True
     return False
 
   def CodeClearProtocol(self):
@@ -145,10 +168,12 @@ class UDSRequester:
         str: A string containing the name and value.
     """
     self.sendExtendedSession()
-    if(self.checkPositiveSessionResponse() == False):
-      return -1
-    self.sendCodeClear()
-    if(self.checkPositiveCodeClearResponse() == False):
-      return -1
+    if(self.checkPositiveSessionResponse('3') == False):
+      return self.receivedResponse
 
+    self.sendCodeClear()
+    return self.receiveResponse()
+    
+#ECU Reset
+#request VID
   

@@ -24,3 +24,10 @@ if __name__ == "__main__":
   newUDSTester.sendSafetySystemDiagnosticSession()
   resp = newUDSTester.tester.recv()
   print(f"{resp}")
+  
+  newUDSTester.sendCodeClear()
+  resp = newUDSTester.tester.recv()
+  print(f"{resp}")
+
+  resp = newUDSTester.CodeClearProtocol()
+  print(f"{resp}")
