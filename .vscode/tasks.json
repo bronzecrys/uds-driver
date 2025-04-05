@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Lint",
+      "type": "shell",
+      "windows": {
+        "command": "powershell.exe -ExecutionPolicy Bypass -File .\\scripts\\lint.ps1"
+      },
+    },
+    {
+      "label": "Build",
+      "type": "shell",
+      "windows": {
+        "command": "powershell.exe -ExecutionPolicy Bypass -File .\\scripts\\build.ps1"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "windows": {
+        "command": "powershell.exe -ExecutionPolicy Bypass -File .\\scripts\\test.ps1"
+      },
+    }
+  ]
+}

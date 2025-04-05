@@ -1,0 +1,15 @@
+{
+"recommendations": [
+  "davidanson.vscode-markdownlint",
+  "ms-python.black-formatter",
+  "ms-python.isort",
+  "ms-python.pylint",
+  "ms-python.python",
+  "njpwerner.autodocstring",
+  "tamasfe.even-better-toml",
+  "ms-python.python",
+  "ms-python.vscode-pylance",
+  "ms-python.debugpy",
+  "ms-vscode.powershell"
+]
+}
