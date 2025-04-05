@@ -1,0 +1,29 @@
+{
+  "editor.tabSize": 2,
+  "files.eol": "\r\n",
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "python.testing.autoTestDiscoverOnSaveEnabled": false,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "python.envFile": "${workspaceFolder}/.venv",
+  "python.testing.pytestArgs": [
+    "-o",
+    "cache_dir=.test/pytest/.pytest_cache",
+    "tests"
+  ],
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "always",
+      "source.fixAll": "always"
+    }
+  },
+  "[shellscript]": {
+    "files.eol": "\n"
+  }
+}
